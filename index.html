@@ -16,14 +16,13 @@
 function password() {
     var testV = 1;
 
-    var pass1 = prompt('请输入密码1:','');
+    var pass1 = prompt('请输入密码2:','');
 
     while (testV < 3) {
         if (!pass1)
             history.go(-1);
 
         if (pass1 == "123") {
-            // window.location.reload();
             return; // 添加这行代码来结束函数
         }
 
