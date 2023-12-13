@@ -12,43 +12,44 @@
  <!-- Example Page Styles -->
  <link rel="stylesheet" href="css/lrtk.css">
  <SCRIPT language=JavaScript> 
- 
+
 function password() { 
- 
+
 var testV = 1; 
- 
+
 var pass1 = prompt('请输入密码:',''); 
- 
+
 while (testV < 3) { 
- 
+
 if (!pass1) 
- 
+
 history.go(-1); 
- 
-if (pass1 == "1234567") { 
- 
-alert('密码正确!'); 
- 
+
+if (pass1 == "这里输入你想设置的密码") { 
+
+// alert('密码正确!'); 
+window.location.reload();
+
 break; 
- 
+
 } 
- 
+
 testV+=-1; 
- 
+
 var pass1 = prompt('密码错误!请重新输入:'); 
- 
+
 } 
- 
+
 if (pass1!="password" & testV ==3) 
- 
+
 history.go(-1); 
- 
+
 return " "; 
- 
+
 } 
- 
+
 document.write(password()); 
- 
+
 </SCRIPT>
 </head>
 <body>
