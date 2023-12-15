@@ -1,58 +1,79 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <meta name="viewport" content="width=device-width,initial-scale=1">
- <script async src="js/busuanzi.pure.mini.js">
- </script>
- <title>河南享卡信息科技合作协议</title>
- <!-- Bellows Styles -->
- <link rel="stylesheet" href="css/bellows.css">
- <link rel="stylesheet" href="css/bellows-theme.css">
- <!-- Example Page Styles -->
- <link rel="stylesheet" href="css/lrtk.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script async src="js/busuanzi.pure.mini.js"></script>
+    <title>河南享卡信息科技合作协议</title>
+    <!-- Bellows Styles -->
+    <link rel="stylesheet" href="css/bellows.css">
+    <link rel="stylesheet" href="css/bellows-theme.css">
+    <!-- Example Page Styles -->
+    <link rel="stylesheet" href="css/lrtk.css">
+    
+    <!-- 新增部分：遮罩层CSS样式 -->
+    <style>
+        #weixin-tip {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            text-align: center;
+        }
+        
+        #weixin-tip p {
+            margin-top: 15%;
+            color: white;
+            font-size: 24px;
+        }
+        
+        #weixin-tip button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            background-color: blue;
+            cursor: pointer;
+        }
+    </style>
+    
+    <!-- 新增部分：检测微信浏览器并显示遮罩层 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var isWeixin = /MicroMessenger/i.test(navigator.userAgent);
+            
+            if (isWeixin) {
+                var weixinTip = document.createElement('div');
+                weixinTip.id = 'weixin-tip';
+                
+                var tipText = document.createElement('p');
+                tipText.textContent = '为了获得更好的体验，请使用浏览器访问我们的网站。';
+                
+                var openButton = document.createElement('button');
+                openButton.textContent = '立即跳转';
+                openButton.addEventListener('click', function () {
+                    window.open(window.location.href, '_blank');
+                });
+                
+                weixinTip.appendChild(tipText);
+                weixinTip.appendChild(openButton);
+                
+                document.body.appendChild(weixinTip);
+                weixinTip.style.display = 'block';
+            }
+        });
+    </script>
 </head>
 <body>
-<h1 style="text-align:center;">河南享卡信息科技有限公司合作协议</h1>
-<div style="text-align:center;">
- 协议更新时间：2022.04.06 / 浏览量:
- <span id="busuanzi_value_page_pv"></span>
-</div>
-<!-- ----------------------------------------------->
-<div class="bellows single">
- <div class="bellows__item">
-  <div class="bellows__header">
-   <h3>1.关于产品</h3>
-  </div>
-  <div class="bellows__content">
-   <b>公司所有产品以网站更新为准</b>
-   <hr>
-   <b>一.套餐大全展示页，无任何联系方式,不可下单，直接转发即可</b>
-   <br>
-   <a href="http://ka.05321888.com/ka/taocan/index.html" target="_blank">点击查看</a>
-   <hr>
-   <b>二.河南享卡佣金补贴政策</b>
-   <br>本月我司将对于单量达标，当月激活200+且上架独家产品的分销商免费升级企业政策，有能力的享受合伙人政策。（警！自用卡且到佣金结算日，月订单数不足两单的不予结算佣金，累计两单后结算）
-7天内没出单、没招收代理、没有找公司说明情况、后台清退，防止恶意竞争和骗子！连续30天内不出单则自动清理资格！详情咨询渠道经理！对于长期且独家合作商，我司辅助在河南注册营业执照，享受补贴免税政策。
-   <hr>
-
-   <b> 三.经销商下级标准报价系统，绑定秘钥即可，禁止外传<br> <a href="http://ka.05321888.com/ka/taocan/daili.html" target="_blank">点击查看</a>
-    <hr> 目前佣金远高于标准报价，后台佣金为准
-    <hr>
-    <br> 标准报价临时秘钥:ODY8QZCVSS<br> 我们还提供二级报价用于您的代理商<br> (1)在标准报价的基础上预留5元<br> 临时秘钥:RS47OFFCJR<br> (2)在标准报价的基础上预留10元<br> 临时秘钥:ZCM60CBPCE<br> (3)在标准报价的基础上预留15元<br> 临时秘钥:NLN74MGCNO<br> (4)在标准报价的基础上预留30元<br> 临时秘钥:KMG10XUGVO<br> </b>
-   <hr> 
-   <b>四.订单进度查询</b>
-   <br> (1)
-   <a href="http://91haoka.cn/webapp/merchant/new_query.html?code=qspb%2B9044ss5E7y0lt3O3g%3D%3D" target="_blank">自助查询</a>
-   <br> (2)支撑群内提供订单信息联系客服查询
-   <hr>
-   <b>五.禁发区/首充方式/快递方式/合约期等查询</b>
-   <br> (1)
-   <a href="http://tcdq.05321888.com/page/taocan/xgzl.html" target="_blank">自助查询</a>
-   <br> (2)支撑群内提供订单信息联系客服查询
-   <hr>
-  </div>
- </div>
+    <h1 style="text-align:center;">河南享卡信息科技有限公司合作协议</h1>
+    <div style="text-align:center;">
+        协议更新时间：2022.04.06 / 浏览量:
+        <span id="busuanzi_value_page_pv"></span>
+    </div>
  <!-- ----------------------------------------------->
  <div class="bellows single">
   <div class="bellows__item">
