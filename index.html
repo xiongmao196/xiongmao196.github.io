@@ -1,124 +1,191 @@
-<!DOCTYPE html >
-<html xmlns:th="http://www.thymeleaf.org">
-	<HEAD>
-		<TITLE>欢迎下载 Ta</TITLE>
-		<META charset=utf-8>
-		<META name=viewport content=width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui>
-		<META name=apple-mobile-web-app-capable content=yes>
-		<META name=apple-touch-fullscreen content=yes>
-		<META name=format-detection content=telephone=no,email=no>
-		<META name=msapplication-TileColor content=#da532c>
-		<META name=msapplication-TileImage content=/favicons/mstile-144x144.png> <LINK rel=stylesheet type=text/css href="/statics/css/style.css">
-		<META name=GENERATOR content="MSHTML 8.00.6001.19393">
-		<style>
-			* {
-            padding: 0;
-            margin: 0;
-        }
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+	<title>APP下载页面</title>
+	</head>
+	<style type="text/css">
+	*{padding: 0;margin: 0;}
+	/*顶部标题栏*/
+	.title_box {
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		background: #48d484;
+		font-size:20px;
+		display:flex;
+	}
 
-        body {
-            font-family: Verdana, Arial, Helvetica, sans-serif;
-            font-size: 12px;
-            color: #222222;
-        }
+	.back_page,.back_home {
+		flex:1;	
+	}
+	.back_page img,.back_home img{
+		width: 32px;
+		height: 32px;
+		margin-top:8px;
+	}
+	.back_page{
+		text-align: left;
+	}
+	.back_home{
+		text-align: right;
+		margin-right:10px;
+	}
+	.title_box p {
+		flex:3;
+		text-align: center;
+		color: #ffffff;
+	}
+	#weixin-tip {
+		display: none;
+		position: fixed;
+		left: 0;
+		top: 0;
+		background: rgba(0, 0, 0, 0.8);
+		filter: alpha(opacity=80);
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+	}		
+	#weixin-tip p {
+		text-align: center;
+		margin-top: 10%;
+		padding: 0 5%;
+		position: relative;
+	}
+	#weixin-tip p img{
+		width:100%;
+	}
+	#weixin-tip .close {
+		position: absolute;
+		width:50px;
+		top: 0;
+		left: 5%;
+	}
+	.app-box{
+		width:100%;
+		height:100px;
+		padding:20px 0;
+		text-align:center;
+	}
+	.app-box .app-left{
+		width:48%;
+		float:left;
+	}
+	.app-box .app-right{
+		margin-left:2%;
+		width:48%;
+		float:left;
+	}
+	.app-box img{width:80%;}
+	.desc{
+		padding-top:50px;
+		padding-bottom:20px;
+		text-align:center;
+	}
+	.desc h1{
+		height:5rem;
+		line-height:5rem;
+		font-size:2.2rem;
+		color:#333;
+	}
+	.desc p{
+		height:3rem;
+		line-height:3rem;
+		font-size:1.5rem;
+		color:#8E8F90;
+	}	
+	</style>
+    <body>
+	<!--标题-->
+	<div class="title_box">
+		<a href="javascript:;" onClick="javascript:history.back(-1);" class="back_page"><img src="images/title-back.png"></a>
+		<p>APP下载</p>
+		<a href="/" class="back_home"><img src="images/title-home.png" alt="返回首页"/></a>
+	</div>
+	<div class="desc">
+	<h1>立即下载手机客户端</h1>
+	<p>随时随地，想玩就玩。</p>
+	</div>
+	<div class="app-box">
+		<div class="app-left" id="download_android">
+			<img src="images/android-btn.png"/>
+		</div>
+		<div class="app-right" id="download_ios">
+			<img src="images/ios-btn.png"/>
+		</div>
+	</div>
+    <div id="weixin-tip">
+		<p><img src="images/live_weixin.png"/>
+		<img id="close"  title="关闭" class="close" src="images/close.png"/>
+		</p>
+	</div>
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript">
+        //判断是不是微信端
+	var is_weixin = (function() {
+		return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
+	})();
+	var tip = document.getElementById('weixin-tip');
+	var close = document.getElementById('close');
+	var tip = document.getElementById('weixin-tip');
+	var android = document.getElementById('download_android');
+	var ios = document.getElementById('download_ios');
+	var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉	
+	window.onload = function() {				
+		if(is_weixin) {				
+			tip.style.height = winHeight + 'px'; //兼容IOS弹窗整屏
+			tip.style.display = 'block';		
+		}else{						
+			//判断Android
+			if (/(Android)/i.test(navigator.userAgent)) {   
+				//直接下载
+				var android_url="";//这里填写android版本的下载地址
+				window.location.href = android_url;
+			}
+		}
+	}
+	close.onclick = function() {
+		tip.style.display = 'none';
+	}
+	$("#download_android").click(function(){
+		if(is_weixin) {
+			tip.style.height = winHeight + 'px'; //兼容IOS弹窗整屏
+			tip.style.display = 'block';
+		}else{
+			tip.style.display = 'none';
+			//判断iPhone|iPad|iPod|iOS
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+				alert("苹果系统不支持安卓软件！");
+			} else if (/(Android)/i.test(navigator.userAgent)) { 
+			    var android_url="";//这里填写android版本的下载地址
+				if(android_url!=""){
+					window.location.href = android_url;	
+				}else{
+					alert("安卓版本正在开发中，敬请期待！");
+				}
+			}
+		}
+	});
 
-        html, body {
-            height: 100%;
-            width: 100%;
-        }
-
-        #box {
-            position: relative;
-            height: 100%;
-            width: 100%;
-        }
-
-        #shade {
-			display: none;
-			 position: absolute;
-            top: 0%;
-			width: 100%;
-			
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        #shade p {
-            text-align: left;
-			color: #000;
-			background-color: #fff;
-			width: 100%;
-			margin-left: 10%;
-			padding: 2% 4%;
-			line-height: 2;
-			font-size: 16px;
-        }
-
-        #shade p span {
-            color: #34A0EA;
-        }
-
-        #img {
-            position: absolute;
-			display: block;
-			right: 5%;
-			top: 1%;
-            
-        }
-    </style>
-	</HEAD>
-	<BODY>
-		
-		<!--<input type="hidden" id="port" th:value="${port}"/>-->
-		<DIV class=container>
-			<div id="shade">
-				<p>我很努力,但是无奈这儿不让下载<br>别担心,点击<span>右上角</span><br>选择<span> "在浏览器中打开" </span>就能下啦~~</p>
-				<img id='img' src="./statics/images/right.png" alt="">
-			</div>
-			<DIV class=header>
-				<DIV class="app-icon text-center animated flipInX"><IMG alt="iLight Bulb" src="./statics/images/512pt.png" width=110
-					 height=110>
-				</DIV>
-				<DIV class="app-info text-center">
-				</DIV>
-			</DIV>
-			<DIV class="content clearfix">
-				<DIV class=text-center>
-					<P>
-						“Ta”
-						是一款软硬件结合的应用，与智能设备配套使用，也可单独使用。通过该应用与手机连接，即可进行各种无线操控，您可用此应用进行天气的查询，听故事，听音乐，还可以与智能设备进行聊天，进行多轮的智能对话。还可以设置闹钟，提醒事项，可以语音打电话。
-					</P>
-					<button type="button" id="btn" style="text-align: center;margin-top: 20px;">点击下载</button>
-				</DIV>
-			</DIV>
-			<FOOTER class=text-center>
-				<!--  <DIV class=select-l><A href="http://www.chipsguide.com/download/ilight/app_en.htm">English</A> |
-              <A href="http://www.chipsguide.com/download/ilight/app.htm">中文</A></DIV>-->
-			</FOOTER>
-			<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-			<script type="application/javascript">
-				$(function() {
-					$("#btn").click(function() {
-						var port = $("#port").val();
-						if (port === "Android") {
-							location.href = "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.4.1.4680_537064985.apk";
-						} else if (port === "iOS") {
-							// location.href="https://apps.apple.com/cn/app/ilight-smart-lights/id981433808";
-							location.href = "https://apps.apple.com/cn/app/%E6%92%AD%E5%AE%A2/id525463029";
-						} else {
-							// alert("请在移动端进行下载~~");
-							$('#shade').css('display','block') // 打开遮罩层
-						}
-					})
-					// 点击遮罩层关闭
-					$("#shade").click(function() { 
-						$('#shade').css('display','none')
-					})
-				})
-			</script>
-	</BODY>
-</HTML>
-
+	$("#download_ios").click(function(){
+		if(is_weixin) {
+			tip.style.height = winHeight + 'px'; //兼容IOS弹窗整屏
+			tip.style.display = 'block';
+		}else{
+			tip.style.display = 'none';
+			var ios_url="";//这里填写ios版本的下载地址
+			if(ios_url!=""){
+				window.location.href = ios_url;
+			}else{
+				alert("ios版本正在开发中，敬请期待！");
+			}
+		}
+	});
+	</script>
+    </body>
+</html>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
