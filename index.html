@@ -23,12 +23,15 @@
             background-color: rgba(0, 0, 0, 0.8);
             z-index: 9999;
             text-align: center;
+            
+            /* 删除或注释掉以下一行 */
+            /* padding-top: 15%; */
         }
         
-        #weixin-tip p {
-            margin-top: 15%;
-            color: white;
-            font-size: 24px;
+        #weixin-tip img {
+            /* 添加以下样式 */
+            max-width: 80%;
+            margin-top: 20%;
         }
         
         #weixin-tip button {
@@ -50,8 +53,8 @@
                 var weixinTip = document.createElement('div');
                 weixinTip.id = 'weixin-tip';
                 
-                var tipText = document.createElement('p');
-                tipText.textContent = '为了获得更好的体验，请使用浏览器访问我们的网站。';
+                var tipImage = document.createElement('img');
+                tipImage.src = 'weixin-tip.png'; // 将此处替换为你实际图片文件的路径
                 
                 var openButton = document.createElement('button');
                 openButton.textContent = '立即跳转';
@@ -59,7 +62,7 @@
                     window.open(window.location.href, '_blank');
                 });
                 
-                weixinTip.appendChild(tipText);
+                weixinTip.appendChild(tipImage);
                 weixinTip.appendChild(openButton);
                 
                 document.body.appendChild(weixinTip);
