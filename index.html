@@ -33,15 +33,6 @@
             max-width: 80%;
             margin-top: 20%;
         }
-        
-        #weixin-tip button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            color: white;
-            background-color: blue;
-            cursor: pointer;
-        }
     </style>
     
     <!-- 新增部分：检测微信浏览器并显示遮罩层 -->
@@ -56,14 +47,7 @@
                 var tipImage = document.createElement('img');
                 tipImage.src = 'image/weixin.png'; // 将此处替换为你实际图片文件的路径
                 
-                var openButton = document.createElement('button');
-                openButton.textContent = '立即跳转';
-                openButton.addEventListener('click', function () {
-                    window.open(window.location.href, '_blank');
-                });
-                
                 weixinTip.appendChild(tipImage);
-                weixinTip.appendChild(openButton);
                 
                 document.body.appendChild(weixinTip);
                 weixinTip.style.display = 'block';
