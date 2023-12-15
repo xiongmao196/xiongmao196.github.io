@@ -1,3 +1,41 @@
+<?php
+header("Content-type:text/plain; charset=utf-8");
+
+// 获取设备信息
+function getDeviceType() {
+  // 全部变成小写字母
+  $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+  $type ='other';
+  // 分别进行判断
+  if(strpos($agent, 'iphone') || strpos($agent, 'ipad')){
+    $type ='ios';
+  }
+
+  if(strpos($agent, 'android')){
+    $type ='android';
+  }
+  return $type;
+}
+
+if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+  $type = getDeviceType();
+  if ($type === 'android') {
+    // 如果是在安卓微信中打开，则返回PDF文件下载头信息
+    header("Content-type:application/pdf; charset=utf-8");
+    header("Content-Disposition:attachment;filename=downloaded.pdf");
+  } else if ($type === 'ios') {
+    echo 'iOS 跳转 App Store';
+  } else {
+    echo '请点击右上角使用默认浏览器打开';
+  }
+}else{
+  // 非微信中打开网页，获取链接中的 URL 参数
+  $url = $_GET['url'];
+  // 重定向到 URL 地址
+  // header('location:'.$url);
+  echo '跳转链接：'.$url;
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
