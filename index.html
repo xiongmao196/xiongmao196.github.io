@@ -44,10 +44,12 @@
 
 <!-- 新增部分：检测微信浏览器并显示遮罩层 -->
 <script>
+    // 检测是否为微信浏览器
     function isWeixinBrowser() {
         return /MicroMessenger/i.test(navigator.userAgent);
     }
 
+    // 密码验证
     function password() {
         var testV = 1;
         var pass1 = prompt('请输入密码:', '');
@@ -55,7 +57,6 @@
             if (!pass1)
                 history.go(-1);
             if (pass1 == "123456") {
-                document.body.classList.remove("hidden"); // 验证成功后显示页面内容
                 break;
             }
             testV += -1;
@@ -66,9 +67,11 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+        // 判断是否为微信浏览器
         var isWeixin = isWeixinBrowser();
 
         if (isWeixin) {
+            // 如果是微信浏览器
             var weixinTip = document.createElement('div');
             weixinTip.id = 'weixin-tip';
 
@@ -76,26 +79,33 @@
             tipImage.src = 'image/weixin.png'; // 将此处替换为你实际图片文件的路径
 
             tipImage.onload = function () {
-                // Display the WeChat tip
+                // 显示微信提示
                 weixinTip.appendChild(tipImage);
                 document.body.appendChild(weixinTip);
                 weixinTip.style.display = 'block';
 
-                // 添加以下两行代码来修改标题
+                // 修改标题
                 document.title = "请使用浏览器访问";
-                setTimeout(function () { document.title = "河南享卡信息科技合作协议"; }, 100000); // 在100秒后恢复原来的标题
+                
+                // 在100秒后恢复原来的标题
+                setTimeout(function () { document.title = "河南享卡信息科技合作协议"; }, 100000);
 
-                // Display the page content after a delay
+                // 一定延时后显示页面内容
                 setTimeout(function () {
                     document.body.classList.remove("hidden");
-                }, 1000); // Adjust the delay as needed
+                }, 1000); // 根据需要调整延时时间
             };
         } else {
-            document.body.classList.add("hidden"); // 非微信浏览器环境下先隐藏页面内容
+            // 如果不是微信浏览器，在显示内容之前需要密码验证
             password();
         }
     });
 </script>
+<style>
+    body.hidden {
+        display: none;
+    }
+</style>
 </head>
 
 <body>
