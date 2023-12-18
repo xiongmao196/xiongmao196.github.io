@@ -42,55 +42,59 @@
         }
     </style>
 
-    <!-- 新增部分：检测微信浏览器并显示遮罩层 -->
-    <script>
-        function isWeixinBrowser() {
-            return /MicroMessenger/i.test(navigator.userAgent);
-        }
+   <!-- 新增部分：检测微信浏览器并显示遮罩层 -->
+<script>
+    function isWeixinBrowser() {
+        return /MicroMessenger/i.test(navigator.userAgent);
+    }
 
-        function password() {
-            var testV = 1;
-            var pass1 = prompt('请输入密码:', '');
-            while (testV < 3) {
-                if (!pass1)
-                    history.go(-1);
-                if (pass1 == "123456") {
-                    document.body.classList.remove("hidden"); // 验证成功后显示页面内容
-                    break;
-                }
-                testV += -1;
-                var pass1 = prompt('密码错误!请重新输入:');
-            }
-            if (pass1 != "123456" & testV == 3)
+    function password() {
+        var testV = 1;
+        var pass1 = prompt('请输入密码:', '');
+        while (testV < 3) {
+            if (!pass1)
                 history.go(-1);
+            if (pass1 == "123456") {
+                document.body.classList.remove("hidden"); // 验证成功后显示页面内容
+                break;
+            }
+            testV += -1;
+            var pass1 = prompt('密码错误!请重新输入:');
         }
+        if (pass1 != "123456" & testV == 3)
+            history.go(-1);
+    }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var isWeixin = isWeixinBrowser();
+    document.addEventListener('DOMContentLoaded', function () {
+        var isWeixin = isWeixinBrowser();
 
-            if (isWeixin) {
-                var weixinTip = document.createElement('div');
-                weixinTip.id = 'weixin-tip';
+        if (isWeixin) {
+            var weixinTip = document.createElement('div');
+            weixinTip.id = 'weixin-tip';
 
-                var tipImage = new Image();
-                tipImage.src = 'image/weixin.png'; // 将此处替换为你实际图片文件的路径
+            var tipImage = new Image();
+            tipImage.src = 'image/weixin.png'; // 将此处替换为你实际图片文件的路径
 
-                tipImage.onload = function() {
+            tipImage.onload = function () {
+                // Delay the display of the tip for better user experience
+                setTimeout(function () {
                     weixinTip.appendChild(tipImage);
                     document.body.appendChild(weixinTip);
                     weixinTip.style.display = 'block';
 
                     // 添加以下两行代码来修改标题
                     document.title = "请使用浏览器访问";
-                    setTimeout(function() { document.title = "河南享卡信息科技合作协议"; }, 100000); // 在100秒后恢复原来的标题
-                };
-            } else {
-                document.body.classList.add("hidden"); // 非微信浏览器环境下先隐藏页面内容
-                password();
-            }
-        });
-    </script>
+                    setTimeout(function () { document.title = "河南享卡信息科技合作协议"; }, 100000); // 在100秒后恢复原来的标题
+                }, 1000); // 1-second delay before displaying the tip
+            };
+        } else {
+            document.body.classList.add("hidden"); // 非微信浏览器环境下先隐藏页面内容
+            password();
+        }
+    });
+</script>
 </head>
+
 <body>
     <h1 style="text-align:center;">河南享卡信息科技有限公司合作协议</h1>
     <div style="text-align:center;">
