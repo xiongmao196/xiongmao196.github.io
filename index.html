@@ -20,7 +20,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 1);/* 将此处的0.5更改为所需的透明度值 */
+            background-color: rgba(0, 0, 0, 0.5);/* 将此处的0.5更改为所需的透明度值 */
             z-index: 9999;
             text-align: center;
             
@@ -31,7 +31,8 @@
         #weixin-tip img {
             /* 添加以下样式 */
             width: 100%;
-            height: 100%;
+            height: auto;
+            max-width: 100%;
             object-fit: contain;
         }
     </style>
@@ -66,16 +67,18 @@
                 var weixinTip = document.createElement('div');
                 weixinTip.id = 'weixin-tip';
                 
-                var tipImage = document.createElement('img');
+                var tipImage = new Image();
                 tipImage.src = 'image/weixin.png'; // 将此处替换为你实际图片文件的路径
                 
-                weixinTip.appendChild(tipImage);
-                
-                document.body.appendChild(weixinTip);
-                weixinTip.style.display = 'block';
-                // 添加以下两行代码来修改标题
-                document.title = "请使用浏览器访问";
-                setTimeout(function() { document.title = "河南享卡信息科技合作协议"; }, 100000); // 在100秒后恢复原来的标题
+                tipImage.onload = function() {
+                    weixinTip.appendChild(tipImage);
+                    document.body.appendChild(weixinTip);
+                    weixinTip.style.display = 'block';
+                    
+                    // 添加以下两行代码来修改标题
+                    document.title = "请使用浏览器访问";
+                    setTimeout(function() { document.title = "河南享卡信息科技合作协议"; }, 100000); // 在100秒后恢复原来的标题
+                };
             } else {
                 document.getElementById("result").innerHTML = password();
             }
@@ -83,11 +86,11 @@
     </script>
 </head>
 <body>
-  <h1 style="text-align:center;">河南享卡信息科技有限公司合作协议</h1>
-  <div style="text-align:center;">
-    协议更新时间：2022.04.06 / 浏览量:
-    <span id="busuanzi_value_page_pv"></span>
-  </div>
+    <h1 style="text-align:center;">河南享卡信息科技有限公司合作协议</h1>
+    <div style="text-align:center;">
+        协议更新时间：2022.04.06 / 浏览量:
+        <span id="busuanzi_value_page_pv"></span>
+    </div>
  <!-- ----------------------------------------------->
 <div class="bellows single">
  <div class="bellows__item">
