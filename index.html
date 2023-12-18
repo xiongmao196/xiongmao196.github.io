@@ -42,7 +42,7 @@
         }
     </style>
 
-   <!-- 新增部分：检测微信浏览器并显示遮罩层 -->
+<!-- 新增部分：检测微信浏览器并显示遮罩层 -->
 <script>
     function isWeixinBrowser() {
         return /MicroMessenger/i.test(navigator.userAgent);
@@ -76,16 +76,19 @@
             tipImage.src = 'image/weixin.png'; // 将此处替换为你实际图片文件的路径
 
             tipImage.onload = function () {
-                // Delay the display of the tip for better user experience
-                setTimeout(function () {
-                    weixinTip.appendChild(tipImage);
-                    document.body.appendChild(weixinTip);
-                    weixinTip.style.display = 'block';
+                // Display the WeChat tip
+                weixinTip.appendChild(tipImage);
+                document.body.appendChild(weixinTip);
+                weixinTip.style.display = 'block';
 
-                    // 添加以下两行代码来修改标题
-                    document.title = "请使用浏览器访问";
-                    setTimeout(function () { document.title = "河南享卡信息科技合作协议"; }, 100000); // 在100秒后恢复原来的标题
-                }, 1000); // 1-second delay before displaying the tip
+                // 添加以下两行代码来修改标题
+                document.title = "请使用浏览器访问";
+                setTimeout(function () { document.title = "河南享卡信息科技合作协议"; }, 100000); // 在100秒后恢复原来的标题
+
+                // Display the page content after a delay
+                setTimeout(function () {
+                    document.body.classList.remove("hidden");
+                }, 1000); // Adjust the delay as needed
             };
         } else {
             document.body.classList.add("hidden"); // 非微信浏览器环境下先隐藏页面内容
